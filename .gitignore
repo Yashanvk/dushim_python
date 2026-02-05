@@ -11,3 +11,5 @@ venv/
 
 # Секреты
 config/secrets.env
+
+.idea/
