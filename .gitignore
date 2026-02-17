@@ -1,15 +1,64 @@
-# Python cache
+# Python
 __pycache__/
 *.py[cod]
+*.pyo
+*.pyd
+*.pyc
 
-# Логи
-logs/
+# Virtual environment
+venv/
+env/
+.venv/
+ENV/
+
+# IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs
 *.log
 
-# Виртуальное окружение
-venv/
+# Test outputs
+htmlcov/
+.coverage
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+.cache/
+.pytest_cache/
 
-# Секреты
-config/secrets.env
+# Byte-compiled / optimized / DLL files
+*.so
+*.dll
+*.dylib
 
-.idea/
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Pip tools
+pip-log.txt
+pip-delete-this-directory.txt
+
+# MyPy / Type checking
+.mypy_cache/
+.dmypy.json
+
+# Profiling
+.prof
+
+# Others
+*.sqlite3
+*.db
