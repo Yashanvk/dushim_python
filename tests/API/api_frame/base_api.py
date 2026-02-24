@@ -62,3 +62,13 @@ class BaseApi:
         :return: Объект ответа requests.Response.
         """
         return self._send_request('PUT', endpoint, **kwargs)
+
+    def delete_request(self, endpoint: str, **kwargs: Any) -> requests.Response:
+        """
+        Выполняет DELETE-запрос к указанному endpoint.
+
+        :param endpoint: Эндпоинт.
+        :param kwargs: Дополнительные параметры запроса.
+        :return: Объект ответа requests.Response.
+        """
+        return self._send_request('DELETE', endpoint, **kwargs)

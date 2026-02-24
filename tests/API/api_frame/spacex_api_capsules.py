@@ -3,10 +3,25 @@ import requests
 
 class Capsules(BaseApi):
     CAPSULES: str = "/capsules"
+    UPCOMING: str = "/capsules/upcoming"
+    PAST: str = "/capsules/past"
 
-    def list_capsules(self)-> requests.Response:
+    def get_capsule(self,capsule_serial:str="")-> requests.Response:
         """
-        Получение списка всех капсул
+        Получение списка капсул/ капсулы по серии
+        :param capsule_serial: серия капсулы
         :return: список всех капсул
         """
-        return self.get_request(self.CAPSULES)
+        return self.get_request(self.CAPSULES + "/" + capsule_serial)
+
+    def test_get_capsule_upcoming(self) -> requests.Response:
+        """
+        :return: Массив предстоящих капсул
+        """
+        return self.get_request(self.UPCOMING)
+
+    def test_get_capsule_past(self) -> requests.Response:
+        """
+        :return: Массив предстоящих капсул
+        """
+        return self.get_request(self.PAST)
