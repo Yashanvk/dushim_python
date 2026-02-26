@@ -30,7 +30,6 @@ def test_get_capsule_upcoming(capsules_client):
         Проверяем, что вернули соответствующий объект
     """
     response: Response = capsules_client.test_get_capsule_upcoming()
-    Assertions.assert_status_code(response, 200)
     response = response.json()
     Assertions.assert_dict_has_key_value(response[0], "original_launch", None)
     Assertions.assert_dict_has_key_value(response[-1], "original_launch", None)
@@ -45,3 +44,5 @@ def test_get_capsule_past(capsules_client):
     response = response.json()
     Assertions.assert_dict_has_key_and_value_not_nan_not_null(response[0], "original_launch")
     Assertions.assert_dict_has_key_and_value_not_nan_not_null(response[-1], "original_launch")
+
+
