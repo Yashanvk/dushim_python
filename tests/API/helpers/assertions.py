@@ -90,7 +90,7 @@ class Assertions:
     @staticmethod
     def assert_dict_has_key_and_value_not_nan_not_null(response: dict[str, Any], key: str) -> None:
         """
-        Проверяет наличие ключа и что знаяение не пустое
+        Проверяет наличие ключа и что значение не пустое
 
         :param response: Словарь.
         :param key: Ключ, который должен присутствовать в JSON.
