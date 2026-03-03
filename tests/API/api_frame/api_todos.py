@@ -18,3 +18,11 @@ class Todos(BaseApi):
         :return: конкретный айди
         """
         return self.get_request(self.ID_TODOS.format(id=id_todos))
+
+    def post_todos(self, body:dict)-> requests.Response:
+        """
+        Создание объекта
+        :param body: тело запроса
+        :return: возвращает созданный объект
+        """
+        return self.post_request(self.TODOS_API, json=body)
