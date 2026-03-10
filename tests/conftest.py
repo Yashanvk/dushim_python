@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 
 from tests.API.api_frame.api_todos import Todos
 from tests.API.api_frame.spacex_api_capsules import Capsules
+from tests.API.api_frame.posts_api import Posts
 
 
 # ✅ Загружаем .env один раз при старте pytest
@@ -38,6 +39,13 @@ def get_todos_url() -> str:
         pytest.fail("TODOS_URL не задан в .env")
     return todos_url
 
+@pytest.fixture(scope="session")
+def get_posts_url() -> str:
+    posts_url = os.getenv("POSTS_URL")
+    if not posts_url:
+        pytest.fail("POSTS_URL не задан в .env")
+    return posts_url
+
 # 📦 API-клиент
 @pytest.fixture()
 def capsules_client(get_base_url):
@@ -47,6 +55,11 @@ def capsules_client(get_base_url):
 @pytest.fixture()
 def todos_api_client(get_todos_url):
     return Todos(get_todos_url)
+
+# 📦 API-клиент для posts
+@pytest.fixture()
+def posts_api_client(get_posts_url):
+    return Posts(get_posts_url)
 
 # 🧭 Playwright Page
 @pytest.fixture()
