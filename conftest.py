@@ -66,6 +66,8 @@ class Config:
     todos_url: str
     posts_url: str
     ui_url: str
+    username: str
+    password: str
 
 
 @pytest.fixture(scope="session")
@@ -75,7 +77,9 @@ def config():
         base_url=os.getenv("BASE_URL"),
         todos_url=os.getenv("TODOS_URL"),
         posts_url=os.getenv("POSTS_URL"),
-        ui_url=os.getenv("UI_URL")
+        ui_url=os.getenv("UI_URL"),
+        username=os.getenv("USERNAME_UI"),
+        password=os.getenv("PASSWORD_UI")
     )
 
     missing = [name for name, value in cfg.__dict__.items() if not value]
