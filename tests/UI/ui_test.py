@@ -1,6 +1,7 @@
 import pytest
 import re
 from playwright.sync_api import expect
+from tests.UI.pages.login_page import LoginPage
 
 @pytest.mark.ui
 @pytest.mark.parametrize("username", [
@@ -14,10 +15,17 @@ def test_login(page, config, username):
     """
         Успешный логин
     """
-    page.goto(config.ui_url)
-    page.get_by_role("textbox", name="Username").fill(username)
-    page.get_by_role("textbox", name="Password").fill("secret_sauce")
-    page.get_by_role("button", name="Login").click()
+    login_page = LoginPage(page, config.ui_url)
+    login_page.open_login_page()
+    login_page.login(username, config.password)
+    expect(page).to_have_url(re.compile(".*inventory"))
+
+
+@pytest.mark.ui
+def test_login_fixture(page, authorized_page):
+    """
+        Успешный логин
+    """
     expect(page).to_have_url(re.compile(".*inventory"))
 
 
@@ -32,11 +40,8 @@ def test_wrong_login(page, config, username, password, error_text):
     """
        Неуспешный логин, параметризированный тест
     """
-    page.goto(config.ui_url)
-    page.get_by_role("textbox", name="Username").fill(username)
-    page.get_by_role("textbox", name="Password").fill(password)
-    page.get_by_role("button", name="Login").click()
-    locator = page.locator("[data-test='error']")
-    expect(locator).to_contain_text(error_text)
-
-
+    login_page = LoginPage(page, config.ui_url)
+    login_page.open_login_page()
+    login_page.login(username, password)
+    expect(login_page.error).to_contain_text(error_text)
+    
