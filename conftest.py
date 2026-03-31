@@ -11,6 +11,7 @@ from tests.API.api_frame.api_todos import Todos
 from tests.API.api_frame.spacex_api_capsules import Capsules
 from tests.API.api_frame.posts_api import Posts
 from utilities.logging import LastLinesFileHandler
+from tests.API.api_frame.dogs_api import Dogs
 
 
 # ---------------------------------------------------------
@@ -68,6 +69,7 @@ class Config:
     ui_url: str
     username: str
     password: str
+    dogs_url: str
 
 
 @pytest.fixture(scope="session")
@@ -79,7 +81,9 @@ def config():
         posts_url=os.getenv("POSTS_URL"),
         ui_url=os.getenv("UI_URL"),
         username=os.getenv("USERNAME_UI"),
-        password=os.getenv("PASSWORD_UI")
+        password=os.getenv("PASSWORD_UI"),
+        dogs_url=os.getenv("DOGS_URL"),
+
     )
 
     missing = [name for name, value in cfg.__dict__.items() if not value]
@@ -105,6 +109,10 @@ def todos_api_client(config):
 @pytest.fixture(scope="session")
 def posts_api_client(config):
     return Posts(config.posts_url)
+
+@pytest.fixture(scope="session")
+def dogs_client(config):
+    return Dogs(config.dogs_url)
 
 
 # ---------------------------------------------------------
